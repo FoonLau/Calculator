@@ -6,11 +6,13 @@ import {
   StyleSheet
 } from 'react-native';
 
+import Keyboard from '../components/Keyboard';
+
 class Home extends Component {
   render() {
     return (
-      <View style={{margin: 30}}>
-        <Text style={{textAlign: "center"}}>This is a Calculator</Text>
+      <View style={{ marginTop: 20, flex: 1}}>
+        <Keyboard />
       </View>
     );
   }
