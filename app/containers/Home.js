@@ -7,11 +7,13 @@ import {
 } from 'react-native';
 
 import Keyboard from '../components/Keyboard';
+import Screen from '../components/Screen';
 
 class Home extends Component {
   render() {
     return (
       <View style={{ marginTop: 20, flex: 1}}>
+        <Screen content="0" />
         <Keyboard />
       </View>
     );
