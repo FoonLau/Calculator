@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
-import * as calculatorReducer from './calculator';
+import calculatorReducer from './calculator';
 
-export default combineReducers(Object.assign(calculatorReducer));
+//export default combineReducers(Object.assign(calculatorReducer));
+
+export default calculatorReducer;
