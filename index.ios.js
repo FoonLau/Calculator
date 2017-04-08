@@ -15,7 +15,7 @@ function configureStore(initialState) {
   return createStore(reducer, initialState, enhancer);
 }
 
-const store = configureStore({});
+const store = configureStore();
 
 export default class Calculator extends Component {
   render() {

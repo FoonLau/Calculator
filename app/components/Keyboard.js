@@ -3,43 +3,32 @@ import { View, StyleSheet } from 'react-native';
 import Button from './Button';
 
 class Keyboard extends Component {
-  onButtonPress() {
+
+  constructor() {
+    super();
+    this.onButtonPress = this.onButtonPress.bind(this);
+  }
+
+  onButtonPress(value) {
+    this.props.keyPressed(value)
   }
 
   render() {
+    const rows = renderData.map((row, index) => {
+      const items = row.items.map((btn) => {
+        return <Button title={btn.title} style={btn.style} key={btn.title} onPress={() => {this.onButtonPress(btn.title)}} />
+      });
+
+      return <View style={row.style} key={index}>
+               {items}
+             </View>
+    });
+
     return (
       <View style={ styles.container }>
-        <View style={ styles.row }>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="C"/>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="+/-"/>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="%"/>
-          <Button style={ [styles.button, styles.noRightBorder, styles.operator] } onPress={ this.onButtonPress } {...operatorFont} title="÷"/>
-        </View>
-        <View style={ styles.row }>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="7"/>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="8"/>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="9"/>
-          <Button style={ [styles.button, styles.noRightBorder, styles.operator] } onPress={ this.onButtonPress } {...operatorFont} title="×"/>
-        </View>
-        <View style={ styles.row }>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="4"/>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="5"/>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="6"/>
-          <Button style={ [styles.button, styles.noRightBorder, styles.operator] } onPress={ this.onButtonPress } {...operatorFont} title="−"/>
-        </View>
-        <View style={ styles.row }>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="1"/>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="2"/>
-          <Button style={ styles.button } onPress={ this.onButtonPress } title="3"/>
-          <Button style={ [styles.button, styles.noRightBorder, styles.operator] } onPress={ this.onButtonPress } {...operatorFont} title="+"/>
-        </View>
-        <View style={ styles.row }>
-          <Button style={ [styles.button, styles.zero, styles.noBottomBorder] }  onPress={ this.onButtonPress } title="0"/>
-          <Button style={ [styles.button, styles.noBottomBorder] } onPress={ this.onButtonPress } title="."/>
-          <Button style={ [styles.button, styles.noRightBorder, styles.noBottomBorder, styles.operator] } onPress={ this.onButtonPress } {...operatorFont} title="="/>
-        </View>
+        {rows}
       </View>
-    );
+    )
   }
 }
 
@@ -72,5 +61,39 @@ const operatorFont = {
   color: '#fff',
   fontSize: 26
 };
+
+const renderData = [
+  {style: styles.row, items: [
+    {title: 'C', style: styles.button},
+    {title: '+/-', style: styles.button},
+    {title: '%', style: styles.button},
+    {title: '÷', style: [styles.button, styles.noRightBorder, styles.operator]}
+  ]},
+  {style: styles.row, items: [
+    {title: '7', style: styles.button},
+    {title: '8', style: styles.button},
+    {title: '9', style: styles.button},
+    {title: '×', style: [styles.button, styles.noRightBorder, styles.operator]}
+  ]},
+  {style: styles.row, items: [
+    {title: '4', style: styles.button},
+    {title: '5', style: styles.button},
+    {title: '6', style: styles.button},
+    {title: '−', style: [styles.button, styles.noRightBorder, styles.operator]}
+  ]},
+  {style: styles.row, items: [
+    {title: '1', style: styles.button},
+    {title: '2', style: styles.button},
+    {title: '3', style: styles.button},
+    {title: '+', style: [styles.button, styles.noRightBorder, styles.operator]}
+  ]},
+  {style: styles.row, items: [
+    {title: '0', style: [styles.button, styles.zero, styles.noBottomBorder]},
+    {title: '.', style: [styles.button, styles.noBottomBorder]},
+    {title: '=', style: [styles.button, styles.noRightBorder, styles.noBottomBorder, styles.operator]}
+  ]}
+];
+
+
 
 export default Keyboard;
