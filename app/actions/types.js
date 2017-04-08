@@ -1,2 +1,1 @@
 export const KEY_PRESSED = 'KEY_PRESSED';
-export const UPDATE_DISPLAY = 'UPDATE_DISPLAY';
