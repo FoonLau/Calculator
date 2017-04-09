@@ -57,11 +57,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const operatorFont = {
-  color: '#fff',
-  fontSize: 26
-};
-
 const renderData = [
   {style: styles.row, items: [
     {title: 'C', style: styles.button},
